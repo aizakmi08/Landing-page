@@ -1043,6 +1043,7 @@ html, body {
 
 .section-services .carousel-inner {
   margin-top: 75px;
+  margin-bottom: 5%;
 }
 
 .section-services .carousel-inner img {
@@ -1465,7 +1466,7 @@ html, body {
 }
 
 .team-member .team-member-back {
-  padding: 0 20px;
+  padding: 0 15px;
   display: table;
   background: #196fc2;
   text-align: center;
