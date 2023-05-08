@@ -90,6 +90,47 @@ $(function () {
             }
       }]
     });
+$(document).ready(function() {
+  // Check if the device is a mobile device
+  var isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+
+  if (isMobile) {
+    // For mobile devices, handle click event
+    $('.team-member').on('click', function() {
+      $(this).toggleClass('flip');
+    });
+  } else {
+    // For desktop devices, handle hover event
+    $('.team-member').on('mouseenter', function() {
+      $(this).addClass('flip');
+    }).on('mouseleave', function() {
+      $(this).removeClass('flip');
+    });
+  }
+});
+
+$(document).ready(function() {
+  // Check if the device is a mobile device
+  var isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+
+  if (isMobile) {
+    // For mobile devices, handle click event
+    $('.team-member-front').on('click', function() {
+      $(this).toggleClass('flip');
+    });
+    $('.team-member-back').on('click', function() {
+      $(this).toggleClass('flip');
+    });
+  } else {
+    // For desktop devices, handle hover event
+    $('.team-member').on('mouseenter', function() {
+      $(this).addClass('flip');
+    }).on('mouseleave', function() {
+      $(this).removeClass('flip');
+    });
+  }
+});
+
 
 //shuffle.js
     var shuffleme = (function( $ ) {

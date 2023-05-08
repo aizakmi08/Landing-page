@@ -1397,13 +1397,24 @@ html, body {
   -ms-transform-style: preserve-3d;
 }
 
-.team-member:hover .flipper {
+.team-member.flip .flipper {
   transform: rotateY(180deg);
   -webkit-transform: rotateY(180deg);
   -moz-transform: rotateY(180deg);
   -o-transform: rotateY(180deg);
   -ms-transform: rotateY(180deg);
 }
+
+@media (max-width: 767px) {
+  .team-member.hover .flipper {
+    transform: none;
+    -webkit-transform: none;
+    -moz-transform: none;
+    -o-transform: none;
+    -ms-transform: none;
+  }
+}
+
 
 .team-member .flipper {
   -webkit-transition: 0.6s;
