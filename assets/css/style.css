@@ -385,7 +385,7 @@ html, body {
   }
   .site-navigation .navbar-toggle .icon-bar {
     position: relative;
-    background-color: #fff;
+    background-color: #000;
     transition: top 0.25s ease-in-out;
     -moz-transition: top 0.25s ease-in-out;
     -webkit-transition: top 0.25s ease-in-out;
@@ -403,7 +403,7 @@ html, body {
   }
   .site-navigation .navbar-collapse {
     position: relative;
-    background-color: #196fc0;
+    background-color: #000;
     z-index: 99;
     text-align: center;
     border-top: 0;
@@ -416,6 +416,7 @@ html, body {
     display: inline-block;
     margin: 10px 0;
     padding-bottom: 5px;
+    color: #fff;
   }
   .site-navigation .navbar-nav > li + li > a {
     margin-left: 0;
@@ -605,7 +606,7 @@ html, body {
   font-family: "Varela", sans-serif;
   margin: 0;
   font-size: 32px;
-  color: #196fc2;
+  color: #000;
   text-align: center;
   text-transform: uppercase;
 }
