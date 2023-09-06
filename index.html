@@ -1,7 +1,36 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    // This is a service worker script
 
+    // Register the service worker
+    self.addEventListener('install', function (event) {
+    event.waitUntil(
+        caches.open('my-site').then(function (cache) {
+        cache.addAll([
+            '/index.html',
+            '/style.css',
+            '/script.js',
+            '/image.png',
+        ]);
+        })
+    );
+    });
+
+    // Respond to requests with cached resources
+    self.addEventListener('fetch', function (event) {
+    event.respondWith(
+        caches.match(event.request).then(function (response) {
+        if (response) {
+            // If the resource is in the cache, return it
+            return response;
+        } else {
+            // If the resource is not in the cache, fetch it from the network
+            return fetch(event.request);
+        }
+        })
+    );
+    });
     <!-- Basic Page Needs
     ================================================== -->
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
@@ -1109,47 +1138,28 @@
 
 <script type="text/javascript">
     $(function () {
-        var isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+      // Check if the user is accessing the webpage from a mobile device
+    var isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
 
-        if (isMobile){
-            $('#myDiv').venomButton({
-            phone: '+996556040905',
-            message: "Hello!",
-            chatMessage: 'Hi there 👋<br><br>How can we help you?',
-            showPopup: true,
-            avatar: './assets/img/avatar.jpg',
-            position: "right",
-            headerColor: '#075E54',
-            buttonColor: '#25D366',
-            linkButton: true,
-            showOnIE: false,
-            nameClient: "Ulugbek",
-            headerTitle: 'Product Manager',
-
-            });
+    if (isMobile) {
+        $('#myDiv').empty();
+      } else {
+        // Hide the WhatsApp button on mobile devices
+        $('#myDiv').venomButton({phone: '+996556040905',
+          message: "Hello!",
+          chatMessage: 'Hi there 👋<br><br>How can we help you?',
+          showPopup: true,
+          avatar: './assets/img/avatar.jpg',
+          position: "right",
+          headerColor: '#075E54',
+          buttonColor: '#25D366',
+          linkButton: false,
+          showOnIE: false,
+          nameClient: "Ulugbek",
+          headerTitle: 'Product Manager',
+          })
         }
-        else{
-            $('#myDiv').venomButton({
-            phone: '+996556040905',
-            message: "Hello!",
-            chatMessage: 'Hi there 👋<br><br>How can we help you?',
-            showPopup: true,
-            avatar: './assets/img/avatar.jpg',
-            position: "right",
-            headerColor: '#075E54',
-            buttonColor: '#25D366',
-            linkButton: true,
-            showOnIE: false,
-            nameClient: "Ulugbek",
-            headerTitle: 'Product Manager',
-            
-            });
-        }
-    
     });
-
-
-</script>
-    
+  </script>
 </body>
 </html>
