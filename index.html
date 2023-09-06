@@ -1131,28 +1131,6 @@
           })
         }
     });
-    if ('serviceWorker' in navigator) {
-        navigator.serviceWorker.register('service-worker.js')
-        .then(function(registration) {
-            console.log('Service Worker registered with scope:', registration.scope);
-        })
-        .catch(function(error) {
-            console.error('Service Worker registration failed:', error);
-        });
-    }
-    self.addEventListener('activate', function(event) {
-    event.waitUntil(
-        caches.keys().then(function(cacheNames) {
-        return Promise.all(
-            cacheNames.map(function(cacheName) {
-            if (cacheName !== 'my-cache-name') {
-                return caches.delete(cacheName);
-            }
-            })
-        );
-        })
-    );
-    });
     self.addEventListener('fetch', function(event) {
     event.respondWith(
         caches.match(event.request).then(function(response) {
@@ -1179,7 +1157,28 @@
         })
     );
     });
-
+    if ('serviceWorker' in navigator) {
+        navigator.serviceWorker.register('service-worker.js')
+        .then(function(registration) {
+            console.log('Service Worker registered with scope:', registration.scope);
+        })
+        .catch(function(error) {
+            console.error('Service Worker registration failed:', error);
+        });
+    }
+    self.addEventListener('activate', function(event) {
+    event.waitUntil(
+        caches.keys().then(function(cacheNames) {
+        return Promise.all(
+            cacheNames.map(function(cacheName) {
+            if (cacheName !== 'my-cache-name') {
+                return caches.delete(cacheName);
+            }
+            })
+        );
+        })
+    );
+    });
   </script>
 </body>
 </html>
