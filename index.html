@@ -1131,36 +1131,15 @@
           })
         }
     });
-        // This is a service worker script
-
-    // Register the service worker
-    self.addEventListener('install', function (event) {
-    event.waitUntil(
-        caches.open('my-site').then(function (cache) {
-        cache.addAll([
-            '/index.html',
-            '/style.css',
-            '/script.js',
-            '/image.png',
-        ]);
+    if ('serviceWorker' in navigator) {
+        navigator.serviceWorker.register('/service-worker.js')
+        .then(function(registration) {
+            console.log('Service Worker registered with scope:', registration.scope);
         })
-    );
-    });
-
-    // Respond to requests with cached resources
-    self.addEventListener('fetch', function (event) {
-    event.respondWith(
-        caches.match(event.request).then(function (response) {
-        if (response) {
-            // If the resource is in the cache, return it
-            return response;
-        } else {
-            // If the resource is not in the cache, fetch it from the network
-            return fetch(event.request);
-        }
-        })
-    );
-    });
+        .catch(function(error) {
+            console.error('Service Worker registration failed:', error);
+        });
+    }
   </script>
 </body>
 </html>
